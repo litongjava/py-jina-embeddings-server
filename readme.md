@@ -45,7 +45,25 @@ This project provides an HTTP API service for generating embeddings from text us
      -H "Content-Type: application/json" \
      -d '{"input": ["Hello world", "你好，世界"], "task": "text-matching"}'
    ```
-
+response example
+```json
+{
+    "object": "list",
+    "data": [
+        {
+            "object": "embedding",
+            "index": 0,
+            "embedding": [
+            ]
+        }
+    ],
+    "model": "text-embedding-3-large",
+    "usage": {
+        "prompt_tokens": 5,
+        "total_tokens": 5
+    }
+}
+```
 ## Dockerfile
 
 To containerize the service, use the following `Dockerfile`:

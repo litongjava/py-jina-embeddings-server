@@ -3,7 +3,7 @@
 Jina Embeddings v3 API 服务
 
 ## 概述
-本项目提供一个 HTTP API 服务，用于使用 Jina-embeddings-v3 模型生成文本嵌入，基于 ONNX Runtime 和 Robyn 框架。
+本项目提供一个 HTTP API 服务，用于使用 Jina-embeddings-v3 模型生成文本嵌入，基于 ONNX Runtime 和 Robyn 框架。兼容openai embedding数据格式.支持在Cpu上运行.
 
 ## 依赖
 - **Python:** 3.8 及以上版本
@@ -45,6 +45,25 @@ Jina Embeddings v3 API 服务
      -H "Content-Type: application/json" \
      -d '{"input": ["Hello world", "你好，世界"], "task": "text-matching"}'
    ```
+返回数示例
+```json
+{
+    "object": "list",
+    "data": [
+        {
+            "object": "embedding",
+            "index": 0,
+            "embedding": [
+            ]
+        }
+    ],
+    "model": "text-embedding-3-large",
+    "usage": {
+        "prompt_tokens": 5,
+        "total_tokens": 5
+    }
+}
+```
 
 ## Dockerfile
 
