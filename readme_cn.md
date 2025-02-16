@@ -1,30 +1,30 @@
 # py-jina-embeddings-server
 
-Jina Embeddings v3 API Service
+Jina Embeddings v3 API 服务
 
-## Overview
-This project provides an HTTP API service for generating embeddings from text using the Jina-embeddings-v3 model with ONNX Runtime and the Robyn framework.
+## 概述
+本项目提供一个 HTTP API 服务，用于使用 Jina-embeddings-v3 模型生成文本嵌入，基于 ONNX Runtime 和 Robyn 框架。
 
-## Requirements
-- **Python:** 3.8+
-- **Libraries:** numpy, onnxruntime, robyn, transformers
+## 依赖
+- **Python:** 3.8 及以上版本
+- **依赖库：** numpy, onnxruntime, robyn, transformers
 
-## Installation
+## 安装
 
-1. Create a conda environment:
+1. 创建 conda 环境：
    ```bash
    conda create -n jina-embeddings python=3.9 -y
    conda activate jina-embeddings
    ```
 
-2. Install the required libraries using pip:
+2. 使用 pip 安装所需的依赖库：
    ```bash
    pip install numpy onnxruntime robyn transformers
    ```
 
-## Usage
+## 使用方法
 
-1. **Download the model:**
+1. **下载模型：**
    ```bash
    mkdir ~/models/jina-embeddings-v3/onnx -p
    cd ~/models/jina-embeddings-v3/onnx
@@ -32,14 +32,14 @@ This project provides an HTTP API service for generating embeddings from text us
    wget https://huggingface.co/jinaai/jina-embeddings-v3/resolve/main/onnx/model.onnx_data
    ```
 
-2. **Run the server:**
-   Start the server by running the script:
+2. **运行服务器：**
+   运行以下脚本以启动服务器：
    ```bash
    python server.py --model_path ~/models/jina-embeddings-v3/onnx/model.onnx
    ```
 
-3. **Send a POST request to the `/v1/embeddings` endpoint:**
-   Example:
+3. **向 `/v1/embeddings` 接口发送 POST 请求：**
+   示例：
    ```bash
    curl -X POST http://localhost:10002/v1/embeddings \
      -H "Content-Type: application/json" \
@@ -48,7 +48,7 @@ This project provides an HTTP API service for generating embeddings from text us
 
 ## Dockerfile
 
-To containerize the service, use the following `Dockerfile`:
+为了容器化服务，使用以下 `Dockerfile`：
 
 ```Dockerfile
 FROM python:3.9-slim
@@ -74,16 +74,15 @@ RUN mkdir -p /models/jina-embeddings-v3/onnx && \
 CMD ["python", "server.py", "--model_path", "/models/jina-embeddings-v3/onnx/model.onnx"]
 ```
 
-1. **Build the Docker image:**
+1. **构建 Docker 镜像：**
    ```bash
    docker build -t litongjava/py-jina-embeddings-server .
    ```
 
-2. **Run the Docker container:**
+2. **运行 Docker 容器：**
    ```bash
    docker run -p 10002:10002 litongjava/py-jina-embeddings-server
    ```
 
-## License
-This project is licensed under the MIT License.
-
+## 许可证
+本项目采用 MIT 许可证。
