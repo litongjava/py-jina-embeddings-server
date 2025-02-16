@@ -41,8 +41,8 @@ pip install numpy onnxruntime robyn transformers
 
 download model
 ```shell
-mkdir ~/models/jina-embeddings-v3 -p
-cd ~/models/jina-embeddings-v3 -p
+mkdir ~/models/jina-embeddings-v3/onnx -p
+cd ~/models/jina-embeddings-v3/onnx
 wget https://huggingface.co/jinaai/jina-embeddings-v3/resolve/main/onnx/model.onnx
 https://huggingface.co/jinaai/jina-embeddings-v3/resolve/main/onnx/model.onnx_data
 ```
