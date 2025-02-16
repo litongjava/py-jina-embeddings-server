@@ -35,6 +35,13 @@ pip install numpy onnxruntime robyn transformers
 
 ## Usage / 使用方法
 
+download model
+```shell
+mkdir ~/models
+cd ~/models
+wget https://huggingface.co/jinaai/jina-embeddings-v3/resolve/main/onnx/model.onnx
+https://huggingface.co/jinaai/jina-embeddings-v3/resolve/main/onnx/model.onnx_data
+```
 **English:**  
 1. Run the script to start the server on port 10002:
    ```bash
