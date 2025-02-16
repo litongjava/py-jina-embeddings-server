@@ -56,6 +56,7 @@ async def encode_texts_async(texts, task="text-matching", max_length=8192):
 app = Robyn(__file__)
 
 @app.post("/v1/embeddings")
+@app.post("/v1/embeddings")
 async def embeddings_endpoint(request: Request):
     try:
         # Robyn's request.json() returns a dict, no need for await
@@ -71,14 +72,28 @@ async def embeddings_endpoint(request: Request):
         if isinstance(texts, str):
             texts = [texts]
 
+        # count token number
+        total_tokens = 0
+        for text in texts:
+            tokens = tokenizer.tokenize(text)
+            total_tokens += len(tokens)
+
         embeddings = await encode_texts_async(texts, task=task, max_length=max_length)
 
         response = {
             "object": "list",
             "model": "jina-embeddings-v3",
             "data": [
-                {"index": i, "embedding": emb.tolist()} for i, emb in enumerate(embeddings)
-            ]
+                {
+                    "object": "embedding",
+                    "index": i,
+                    "embedding": emb.tolist()
+                } for i, emb in enumerate(embeddings)
+            ],
+            "usage": {
+                "prompt_tokens": total_tokens,
+                "total_tokens": total_tokens
+            }
         }
         return response, {}, 200
     except Exception as e:
