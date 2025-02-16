@@ -19,6 +19,10 @@ This project provides an HTTP API service for generating embeddings from text us
 
 ## Installation / 安装
 
+```shell
+conda create -n jina-embeddings python=3.9 -y
+conda activate jina-embeddings
+```
 **English:**  
 Install the required libraries using pip:
 
