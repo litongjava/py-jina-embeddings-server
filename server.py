@@ -55,7 +55,10 @@ async def encode_texts_async(texts, task="text-matching", max_length=8192):
 # Build HTTP service using Robyn
 app = Robyn(__file__)
 
-@app.post("/v1/embeddings")
+@app.get("/")
+async def index_endpoint(request):
+    return "/"
+    
 @app.post("/v1/embeddings")
 async def embeddings_endpoint(request: Request):
     try:
