@@ -122,7 +122,7 @@ if __name__ == "__main__":
     initialize_session(args.model_path)
 
     # Start the HTTP service on the specified port
-    app.start(port=args.port)
+    app.start(host="0.0.0.0",port=args.port)
 
 # Example curl request:
 # curl -X POST http://localhost:10002/v1/embeddings \
